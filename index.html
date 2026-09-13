@@ -1,21 +1,296 @@
-lang="hi">
+
+<!DOCTYPE html>
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Huda Islamic Talim</title>
 
-Islamic Talim</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+body {
+    background: #222;
+    font-family: Arial, sans-serif;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f3f8f5;
-            color: #222;
-            transition: 0.3s;
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 12px;
+    background: #f5f5f5;
+}
 
-                
+h1 {
+    text-align: center;
+    color: #075e54;
+    margin: 10px 0 20px;
+    font-size: 27px;
+}
+
+.islamic-button {
+    width: 100%;
+    min-height: 125px;
+    display: flex;
+    align-items: center;
+    border: 3px solid;
+    border-radius: 28px;
+    margin-bottom: 12px;
+    padding: 10px;
+    background: #fff;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.icon {
+    width: 105px;
+    height: 100px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    flex-shrink: 0;
+}
+
+.text {
+    flex: 1;
+    text-align: center;
+    padding: 5px;
+}
+
+.text h2 {
+    font-size: 19px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.text p {
+    font-size: 20px;
+    direction: rtl;
+    margin-bottom: 5px;
+}
+
+.text span {
+    font-size: 17px;
+    color: #555;
+}
+
+.arrow {
+    font-size: 38px;
+    color: #555;
+    padding: 5px;
+}
+
+/* बटन के रंग */
+
+.quran {
+    border-color: #8751a5;
+}
+.quran .icon {
+    background: #8751a5;
+}
+
+.hadith {
+    border-color: #42a99b;
+}
+.hadith .icon {
+    background: #159b8b;
+}
+
+.maloomat {
+    border-color: #e47d5c;
+}
+.maloomat .icon {
+    background: #e47745;
+}
+
+.dua {
+    border-color: #587fc6;
+}
+.dua .icon {
+    background: #4679c5;
+}
+
+.calendar {
+    border-color: #dd7180;
+}
+.calendar .icon {
+    background: #db5c70;
+}
+
+.video {
+    border-color: #9a5bb7;
+}
+.video .icon {
+    background: #8b4cb0;
+}
+
+.faraiz {
+    border-color: #318d6c;
+}
+.faraiz .icon {
+    background: #228b65;
+}
+
+.namaz {
+    border-color: #d4a64a;
+}
+.namaz .icon {
+    background: #d19a35;
+}
+
+.masael {
+    border-color: #6684c0;
+}
+.masael .icon {
+    background: #5477b8;
+}
+
+.qibla {
+    border-color: #299b88;
+}
+.qibla .icon {
+    background: #168b78;
+}
+
+@media (max-width: 450px) {
+    .icon {
+        width: 80px;
+        height: 85px;
+        font-size: 38px;
+    }
+
+    .text h2 {
+        font-size: 16px;
+    }
+
+    .text p {
+        font-size: 17px;
+    }
+
+    .text span {
+        font-size: 14px;
+    }
+
+    .arrow {
+        font-size: 30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Huda Islamic Talim</h1>
+
+<button class="islamic-button quran">
+    <div class="icon">📖</div>
+    <div class="text">
+        <h2>कुरआन</h2>
+        <p>قرآن</p>
+        <span>Quran</span>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+<button class="islamic-button hadith">
+    <div class="icon">📚</div>
+    <div class="text">
+        <h2>हदीस शरीफ सहीह सित्ता</h2>
+        <p>حدیث شریف صحاح ستہ</p>
+        <span>Hadith Sharif Sihahe Sitta</span>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+<button class="islamic-button maloomat">
+    <div class="icon">🕌</div>
+    <div class="text">
+        <h2>इस्लामिक मालूमात</h2>
+        <p>اسلامی معلومات</p>
+        <span>Islamic Knowledge</span>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+<button class="islamic-button dua">
+    <div class="icon">🤲</div>
+    <div class="text">
+        <h2>दुआ व अज़कार</h2>
+        <p>دعائیں و اذکار</p>
+        <span>Dua o Azkar</span>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+<button class="islamic-button calendar">
+    <div class="icon">📅</div>
+    <div class="text">
+        <h2>इस्लामिक कैलेंडर</h2>
+        <p>اسلامی کیلنڈر</p>
+        <span>Islamic Calendar</span>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+<button class="islamic-button video">
+    <div class="icon">🎥</div>
+    <div class="text">
+        <h2>इस्लामिक वीडियो</h2>
+        <p>اسلامی ویڈیوز</p>
+        <span>Islamic Videos</span>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+<button class="islamic-button faraiz">
+    <div class="icon">📜</div>
+    <div class="text">
+        <h2>फ़राइज़ व वाजिबात</h2>
+        <p>فرائض و واجبات</p>
+        <span>Faraiz o Wajibaat</span>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+<button class="islamic-button namaz">
+    <div class="icon">🧎</div>
+    <div class="text">
+        <h2>नमाज़ का तरीका</h2>
+        <p>طریقۂ نماز</p>
+        <span>Method of Salah</span>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+<button class="islamic-button masael">
+    <div class="icon">❓</div>
+    <div class="text">
+        <h2>मसाइल</h2>
+        <p>مسائل</p>
+        <span>Islamic Rulings</span>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+<button class="islamic-button qibla">
+    <div class="icon">🕋</div>
+    <div class="text">
+        <h2>क़िबला</h2>
+        <p>قبلہ</p>
+        <span>Qibla</span>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+</div>
+
+</body>
+</html>
