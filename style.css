@@ -1,1 +1,88 @@
 
+/* Quran Website */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  background: #f3f7f4;
+  color: #222;
+  font-family: Arial, sans-serif;
+}
+
+/* Main Container */
+#quran {
+  max-width: 900px;
+  margin: auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* Surah Name */
+#quran h2 {
+  text-align: center;
+  color: #087443;
+  font-size: 30px;
+  margin: 10px 0 25px;
+  font-family: "Noto Naskh Arabic", serif;
+}
+
+/* Ayah Box */
+.ayah {
+  padding: 20px 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Arabic */
+.arabic {
+  direction: rtl;
+  text-align: right;
+  font-family: "Noto Naskh Arabic", "Amiri", serif;
+  font-size: 30px;
+  line-height: 2.2;
+  color: #111;
+}
+
+/* Urdu Translation */
+.urdu {
+  direction: rtl;
+  text-align: right;
+  font-family: "Noto Nastaliq Urdu", "Noto Naskh Arabic", serif;
+  font-size: 21px;
+  line-height: 2;
+  color: #555;
+  margin-top: 10px;
+}
+
+/* Mobile Screen */
+@media (max-width: 600px) {
+
+  body {
+    padding: 8px;
+  }
+
+  #quran {
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  #quran h2 {
+    font-size: 25px;
+  }
+
+  .arabic {
+    font-size: 25px;
+    line-height: 2;
+  }
+
+  .urdu {
+    font-size: 19px;
+    line-height: 1.9;
+  }
+}
