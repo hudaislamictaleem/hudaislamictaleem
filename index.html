@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Huda Islamic Talim</title>
 
 <style>
+
 * {
     margin: 0;
     padding: 0;
@@ -14,169 +16,303 @@
 }
 
 body {
-    background: #222;
+    background: #073b2a;
     font-family: Arial, sans-serif;
 }
 
 .container {
-    max-width: 600px;
+    max-width: 700px;
     margin: auto;
-    padding: 12px;
-    background: #f5f5f5;
+    padding: 15px;
     min-height: 100vh;
+
+    background:
+    radial-gradient(circle at top, #fffdf2, #eaf7ee 70%);
 }
 
-h1 {
+/* HEADER */
+
+.header {
     text-align: center;
-    color: #075e54;
-    margin: 10px 0 20px;
-    font-size: 27px;
+    padding: 22px 10px 25px;
+    margin-bottom: 15px;
+    border-radius: 25px;
+
+    background: linear-gradient(135deg, #075e45, #0c8b65);
+    color: white;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
+
+.header h1 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.header .urdu {
+    direction: rtl;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.header p {
+    font-size: 16px;
+    opacity: 0.95;
+}
+
+/* BUTTON */
 
 .islamic-button {
+
     width: 100%;
     min-height: 125px;
+
     display: flex;
     align-items: center;
+
     border: 3px solid;
-    border-radius: 28px;
-    margin-bottom: 12px;
+    border-radius: 25px;
+
+    margin-bottom: 15px;
     padding: 10px;
-    background: #fff;
+
+    background: white;
+
     cursor: pointer;
-    overflow: hidden;
+
+    box-shadow:
+        0 5px 12px rgba(0,0,0,0.15);
+
+    transition: 0.25s;
 }
 
+.islamic-button:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 9px 18px rgba(0,0,0,0.22);
+}
+
+.islamic-button:active {
+    transform: scale(0.98);
+}
+
+/* ICON */
+
 .icon {
-    width: 105px;
+
+    width: 100px;
     height: 100px;
-    border-radius: 20px;
+
+    border-radius: 22px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 50px;
+
+    font-size: 48px;
+
     flex-shrink: 0;
+
+    box-shadow:
+        inset 0 0 0 4px rgba(255,255,255,0.35);
 }
+
+/* TEXT */
 
 .text {
     flex: 1;
     text-align: center;
-    padding: 5px;
+    padding: 5px 10px;
 }
 
 .text h2 {
-    font-size: 19px;
-    color: #333;
-    margin-bottom: 5px;
+    font-size: 20px;
+    color: #222;
+    margin-bottom: 7px;
 }
 
 .text p {
-    font-size: 20px;
+    font-size: 21px;
     direction: rtl;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 }
 
 .text span {
-    font-size: 17px;
+    font-size: 15px;
     color: #555;
 }
+
+/* ARROW */
 
 .arrow {
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     font-size: 38px;
-    color: #555;
-    padding: 5px;
+
+    color: white;
+
+    flex-shrink: 0;
 }
 
-/* Button Colors */
+/* COLORS */
 
 .quran {
     border-color: #8751a5;
 }
-
 .quran .icon {
+    background: linear-gradient(135deg,#8751a5,#c58be5);
+}
+.quran .arrow {
     background: #8751a5;
 }
 
-.hadith {
-    border-color: #42a99b;
-}
 
+.hadith {
+    border-color: #159b8b;
+}
 .hadith .icon {
+    background: linear-gradient(135deg,#159b8b,#55cbb8);
+}
+.hadith .arrow {
     background: #159b8b;
 }
 
-.maloomat {
-    border-color: #e47d5c;
-}
 
+.maloomat {
+    border-color: #e47745;
+}
 .maloomat .icon {
+    background: linear-gradient(135deg,#e47745,#ffb06f);
+}
+.maloomat .arrow {
     background: #e47745;
 }
 
-.dua {
-    border-color: #587fc6;
-}
 
+.dua {
+    border-color: #4679c5;
+}
 .dua .icon {
+    background: linear-gradient(135deg,#4679c5,#79a9ed);
+}
+.dua .arrow {
     background: #4679c5;
 }
 
-.calendar {
-    border-color: #dd7180;
-}
 
+.calendar {
+    border-color: #db5c70;
+}
 .calendar .icon {
+    background: linear-gradient(135deg,#db5c70,#f58da0);
+}
+.calendar .arrow {
     background: #db5c70;
 }
 
-.video {
-    border-color: #9a5bb7;
-}
 
+.video {
+    border-color: #8b4cb0;
+}
 .video .icon {
+    background: linear-gradient(135deg,#8b4cb0,#b87ad6);
+}
+.video .arrow {
     background: #8b4cb0;
 }
 
-.faraiz {
-    border-color: #318d6c;
-}
 
+.faraiz {
+    border-color: #228b65;
+}
 .faraiz .icon {
+    background: linear-gradient(135deg,#228b65,#57bd91);
+}
+.faraiz .arrow {
     background: #228b65;
 }
 
-.namaz {
-    border-color: #d4a64a;
-}
 
+.namaz {
+    border-color: #d19a35;
+}
 .namaz .icon {
+    background: linear-gradient(135deg,#d19a35,#f0c86b);
+}
+.namaz .arrow {
     background: #d19a35;
 }
 
-.masael {
-    border-color: #6684c0;
-}
 
+.masael {
+    border-color: #5477b8;
+}
 .masael .icon {
+    background: linear-gradient(135deg,#5477b8,#82a7e2);
+}
+.masael .arrow {
     background: #5477b8;
 }
 
-.qibla {
-    border-color: #299b88;
-}
 
+.qibla {
+    border-color: #168b78;
+}
 .qibla .icon {
+    background: linear-gradient(135deg,#168b78,#54c5b2);
+}
+.qibla .arrow {
     background: #168b78;
 }
 
-/* Mobile */
 
-@media (max-width: 450px) {
+/* FOOTER */
+
+.footer {
+    text-align: center;
+    padding: 20px 5px 10px;
+
+    color: #075e45;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+
+    .container {
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .header .urdu {
+        font-size: 21px;
+    }
+
+    .islamic-button {
+        min-height: 110px;
+        padding: 8px;
+        border-radius: 22px;
+    }
 
     .icon {
-        width: 80px;
-        height: 85px;
+        width: 78px;
+        height: 82px;
         font-size: 38px;
+        border-radius: 18px;
     }
 
     .text h2 {
@@ -188,182 +324,228 @@ h1 {
     }
 
     .text span {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .arrow {
+        width: 40px;
+        height: 40px;
         font-size: 30px;
     }
 }
+
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
+
+<!-- HEADER -->
+
+<div class="header">
+
 <h1>Huda Islamic Talim</h1>
+
+<div class="urdu">
+ہدایت اسلامک تعلیم
+</div>
+
+<p>इस्लाम की रोशनी — हर दिल तक</p>
+
+</div>
 
 
 <!-- QURAN -->
+
 <button class="islamic-button quran"
-onclick="window.location.href='Quran.html'">
+onclick="window.location.href='quran.html'">
 
-    <div class="icon">📖</div>
+<div class="icon">📖</div>
 
-    <div class="text">
-        <h2>कुरआन</h2>
-        <p>قرآن</p>
-        <span>Quran</span>
-    </div>
+<div class="text">
+<h2>कुरआन</h2>
+<p>قرآن</p>
+<span>Quran</span>
+</div>
 
-    <div class="arrow">›</div>
+<div class="arrow">›</div>
 
 </button>
 
 
 <!-- HADITH -->
-<button class="islamic-button hadith">
 
-    <div class="icon">📚</div>
+<button class="islamic-button hadith"
+onclick="window.location.href='hadith.html'">
 
-    <div class="text">
-        <h2>हदीस शरीफ सहीह सित्ता</h2>
-        <p>حدیث شریف صحاح ستہ</p>
-        <span>Hadith Sharif Sihahe Sitta</span>
-    </div>
+<div class="icon">📚</div>
 
-    <div class="arrow">›</div>
+<div class="text">
+<h2>हदीस शरीफ सहीह सित्ता</h2>
+<p>حدیث شریف صحاح ستہ</p>
+<span>Hadith Sharif Sihahe Sitta</span>
+</div>
+
+<div class="arrow">›</div>
 
 </button>
 
 
 <!-- ISLAMIC MALUMAT -->
-<button class="islamic-button maloomat">
 
-    <div class="icon">🕌</div>
+<button class="islamic-button maloomat"
+onclick="window.location.href='maloomat.html'">
 
-    <div class="text">
-        <h2>इस्लामिक मालूमात</h2>
-        <p>اسلامی معلومات</p>
-        <span>Islamic Knowledge</span>
-    </div>
+<div class="icon">🕌</div>
 
-    <div class="arrow">›</div>
+<div class="text">
+<h2>इस्लामिक मालूमात</h2>
+<p>اسلامی معلومات</p>
+<span>Islamic Knowledge</span>
+</div>
+
+<div class="arrow">›</div>
 
 </button>
 
 
 <!-- DUA -->
-<button class="islamic-button dua">
 
-    <div class="icon">🤲</div>
+<button class="islamic-button dua"
+onclick="window.location.href='duae-azkar.html'">
 
-    <div class="text">
-        <h2>दुआ व अज़कार</h2>
-        <p>دعائیں و اذکار</p>
-        <span>Dua o Azkar</span>
-    </div>
+<div class="icon">🤲</div>
 
-    <div class="arrow">›</div>
+<div class="text">
+<h2>दुआ व अज़कार</h2>
+<p>دعائیں و اذکار</p>
+<span>Dua o Azkar</span>
+</div>
+
+<div class="arrow">›</div>
 
 </button>
 
 
 <!-- CALENDAR -->
-<button class="islamic-button calendar">
 
-    <div class="icon">📅</div>
+<button class="islamic-button calendar"
+onclick="window.location.href='calendar.html'">
 
-    <div class="text">
-        <h2>इस्लामिक कैलेंडर</h2>
-        <p>اسلامی کیلنڈر</p>
-        <span>Islamic Calendar</span>
-    </div>
+<div class="icon">📅</div>
 
-    <div class="arrow">›</div>
+<div class="text">
+<h2>इस्लामिक कैलेंडर</h2>
+<p>اسلامی کیلنڈر</p>
+<span>Islamic Calendar</span>
+</div>
+
+<div class="arrow">›</div>
 
 </button>
 
 
 <!-- VIDEO -->
-<button class="islamic-button video">
 
-    <div class="icon">🎥</div>
+<button class="islamic-button video"
+onclick="window.location.href='video.html'">
 
-    <div class="text">
-        <h2>इस्लामिक वीडियो</h2>
-        <p>اسلامی ویڈیوز</p>
-        <span>Islamic Videos</span>
-    </div>
+<div class="icon">🎥</div>
 
-    <div class="arrow">›</div>
+<div class="text">
+<h2>इस्लामिक वीडियो</h2>
+<p>اسلامی ویڈیوز</p>
+<span>Islamic Videos</span>
+</div>
+
+<div class="arrow">›</div>
 
 </button>
 
 
 <!-- FARAIZ -->
-<button class="islamic-button faraiz">
 
-    <div class="icon">📜</div>
+<button class="islamic-button faraiz"
+onclick="window.location.href='faraiz.html'">
 
-    <div class="text">
-        <h2>फ़राइज़ व वाजिबात</h2>
-        <p>فرائض و واجبات</p>
-        <span>Faraiz o Wajibaat</span>
-    </div>
+<div class="icon">📜</div>
 
-    <div class="arrow">›</div>
+<div class="text">
+<h2>फ़राइज़ व वाजिबात</h2>
+<p>فرائض و واجبات</p>
+<span>Faraiz o Wajibaat</span>
+</div>
+
+<div class="arrow">›</div>
 
 </button>
 
 
 <!-- NAMAZ -->
-<button class="islamic-button namaz">
 
-    <div class="icon">🧎</div>
+<button class="islamic-button namaz"
+onclick="window.location.href='namaz.html'">
 
-    <div class="text">
-        <h2>नमाज़ का तरीका</h2>
-        <p>طریقۂ نماز</p>
-        <span>Method of Salah</span>
-    </div>
+<div class="icon">🧎</div>
 
-    <div class="arrow">›</div>
+<div class="text">
+<h2>नमाज़ का तरीका</h2>
+<p>طریقۂ نماز</p>
+<span>Method of Salah</span>
+</div>
+
+<div class="arrow">›</div>
 
 </button>
 
 
 <!-- MASAEL -->
-<button class="islamic-button masael">
 
-    <div class="icon">❓</div>
+<button class="islamic-button masael"
+onclick="window.location.href='masael.html'">
 
-    <div class="text">
-        <h2>मसाइल</h2>
-        <p>مسائل</p>
-        <span>Islamic Rulings</span>
-    </div>
+<div class="icon">❓</div>
 
-    <div class="arrow">›</div>
+<div class="text">
+<h2>मसाइल</h2>
+<p>مسائل</p>
+<span>Islamic Rulings</span>
+</div>
+
+<div class="arrow">›</div>
 
 </button>
 
 
 <!-- QIBLA -->
-<button class="islamic-button qibla">
 
-    <div class="icon">🕋</div>
+<button class="islamic-button qibla"
+onclick="window.location.href='qibla.html'">
 
-    <div class="text">
-        <h2>क़िबला</h2>
-        <p>قبلہ</p>
-        <span>Qibla</span>
-    </div>
+<div class="icon">🕋</div>
 
-    <div class="arrow">›</div>
+<div class="text">
+<h2>क़िबला</h2>
+<p>قبلہ</p>
+<span>Qibla</span>
+</div>
+
+<div class="arrow">›</div>
 
 </button>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+सीखें • समझें • अमल करें
+
+</div>
+
 
 </div>
 
