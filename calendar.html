@@ -1,1162 +1,1105 @@
 <!DOCTYPE html>
-<html lang="ur" dir="rtl">
+<html lang="hi">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>اسلامی کیلنڈر - مدھوبنی بہار</title>
+<title>Sana Islamic - Islamic Calendar</title>
 
 <style>
 
 *{
-    box-sizing:border-box;
+box-sizing:border-box;
 }
 
 body{
-    margin:0;
-    background:#eef5f1;
-    font-family:
-    "Noto Nastaliq Urdu",
-    "Noto Naskh Arabic",
-    Arial,
-    sans-serif;
-    color:#17352b;
-}
-
-.container{
-    max-width:900px;
-    margin:auto;
-    padding:15px;
+margin:0;
+font-family:Arial,sans-serif;
+background:#061743;
+color:white;
 }
 
 .header{
-    background:#075e54;
-    color:white;
-    padding:22px 15px;
-    border-radius:0 0 25px 25px;
-    text-align:center;
-    box-shadow:0 4px 12px rgba(0,0,0,.15);
+background:#4055b8;
+padding:12px 10px;
+text-align:center;
 }
 
-.header h1{
-    margin:0;
-    font-size:30px;
+.header h2{
+margin:0;
+font-size:24px;
 }
 
-.header p{
-    margin:7px 0 0;
-    font-size:18px;
+#clock{
+font-size:20px;
+font-weight:bold;
+margin-top:5px;
 }
 
-.date-box{
-    background:white;
-    margin-top:15px;
-    padding:20px;
-    border-radius:20px;
-    text-align:center;
-    box-shadow:0 3px 12px rgba(0,0,0,.10);
+.main{
+min-height:100vh;
+padding:15px 8px 35px;
+
+background:
+radial-gradient(
+circle at 50% 20%,
+#178bd8 0%,
+#17439e 40%,
+#061743 90%
+);
 }
 
-.date-box h2{
-    margin:5px;
-    color:#075e54;
+.title{
+text-align:center;
+font-size:25px;
+font-weight:bold;
+margin:8px 0 15px;
 }
 
-.date-box p{
-    margin:6px;
-    font-size:18px;
+.monthBox{
+max-width:600px;
+margin:auto;
+background:rgba(0,0,0,.25);
+padding:10px;
+border-radius:15px;
 }
 
-.navigation{
-    display:flex;
-    gap:10px;
-    margin-top:15px;
+.monthTitle{
+text-align:center;
+font-size:20px;
+font-weight:bold;
+margin-bottom:10px;
+line-height:28px;
 }
 
-.navigation button{
-    flex:1;
-    border:none;
-    padding:14px 8px;
-    border-radius:15px;
-    background:#075e54;
-    color:white;
-    font-size:17px;
-    cursor:pointer;
+.buttons{
+display:flex;
+gap:6px;
+margin-bottom:10px;
 }
 
-.navigation button:hover{
-    opacity:.85;
+.buttons button{
+flex:1;
+border:0;
+border-radius:10px;
+padding:10px 5px;
+font-size:15px;
+font-weight:bold;
+background:#12a9e0;
+color:white;
 }
 
-.today-btn{
-    margin-top:10px;
-    width:100%;
-    border:none;
-    padding:12px;
-    border-radius:15px;
-    background:#d4a017;
-    color:white;
-    font-size:17px;
-    cursor:pointer;
+.todayBtn{
+background:white !important;
+color:#222 !important;
 }
 
-.next-prayer{
-    background:#075e54;
-    color:white;
-    margin-top:15px;
-    padding:20px;
-    border-radius:20px;
-    text-align:center;
+.calendar{
+width:100%;
+border-collapse:collapse;
+table-layout:fixed;
 }
 
-.next-prayer h2{
-    margin:0 0 8px;
+.calendar th{
+background:#4055b8;
+color:white;
+padding:8px 2px;
+font-size:12px;
+line-height:18px;
 }
 
-#countdown{
-    font-size:30px;
-    font-weight:bold;
-    direction:ltr;
+.calendar td{
+height:88px;
+border:2px solid #061743;
+background:#f5f5f5;
+color:#111;
+vertical-align:top;
+padding:4px 2px;
+position:relative;
 }
 
-.prayer-list{
-    margin-top:15px;
+.calendar td.today{
+background:#ffe082;
 }
 
-.prayer-card{
-    background:white;
-    margin-bottom:10px;
-    padding:15px;
-    border-radius:18px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
+.calendar td.holiday{
+background:#b7f7c5;
 }
 
-.prayer-name{
-    font-size:20px;
-    font-weight:bold;
+.dateEnglish{
+font-size:20px;
+font-weight:bold;
 }
 
-.prayer-time{
-    font-size:23px;
-    color:#075e54;
-    font-weight:bold;
-    direction:ltr;
+.dateHindi{
+font-size:12px;
+font-weight:bold;
+margin-top:2px;
 }
 
-.azan{
-    font-size:14px;
-    color:#777;
-    display:block;
-    margin-top:3px;
+.dateUrdu{
+font-size:12px;
+direction:rtl;
+margin-top:3px;
 }
 
-.special{
-    background:#fff8df;
-    border:2px solid #e5c45c;
+.hijri{
+font-size:10px;
+color:#17439e;
+font-weight:bold;
+margin-top:4px;
+line-height:13px;
 }
 
-.month-section{
-    background:white;
-    margin-top:20px;
-    padding:15px;
-    border-radius:20px;
-    box-shadow:0 3px 12px rgba(0,0,0,.10);
+.tick{
+font-size:17px;
+font-weight:bold;
+color:green;
+margin-top:2px;
 }
 
-.month-section h2{
-    text-align:center;
-    color:#075e54;
+.holidayName{
+font-size:8px;
+font-weight:bold;
+color:#075c16;
+line-height:10px;
+margin-top:1px;
 }
 
-.table-wrapper{
-    overflow-x:auto;
+.info{
+max-width:600px;
+margin:15px auto 0;
+background:#06edf9;
+color:#111;
+border:2px solid green;
+border-radius:10px;
+padding:10px;
+text-align:center;
+font-weight:bold;
+line-height:25px;
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:850px;
-}
-
-th{
-    background:#075e54;
-    color:white;
-    padding:10px;
-}
-
-td{
-    border:1px solid #ddd;
-    padding:9px;
-    text-align:center;
-    background:#fff;
-}
-
-.today-row{
-    background:#e5f5ed !important;
-    font-weight:bold;
-}
-
-.footer{
-    text-align:center;
-    margin-top:20px;
-    padding:20px;
-    color:#555;
-    font-size:14px;
-}
-
-.loading{
-    text-align:center;
-    padding:25px;
-    font-size:18px;
-}
-
-.error{
-    background:#ffe5e5;
-    color:#9b0000;
-    padding:15px;
-    border-radius:15px;
-    margin-top:15px;
-    text-align:center;
-}
-
-select{
-    width:100%;
-    padding:12px;
-    margin-top:8px;
-    border-radius:12px;
-    border:1px solid #ccc;
-    font-size:16px;
-}
-
-.settings{
-    background:white;
-    margin-top:15px;
-    padding:15px;
-    border-radius:18px;
-}
-
-.settings h3{
-    margin-top:0;
-    color:#075e54;
+.footerNote{
+max-width:600px;
+margin:12px auto;
+font-size:12px;
+text-align:center;
+color:#ffe082;
 }
 
 </style>
-</head>
 
+</head>
 
 <body>
 
 <div class="header">
 
-    <h1>🕌 اسلامی کیلنڈر</h1>
+<h2>🕌 Sana Islamic</h2>
 
-    <p>
-        مدھوبنی، بہار — PIN 847229
-    </p>
+<div id="clock">
+🕒 --:--:--
+</div>
 
 </div>
 
 
-<div class="container">
+<div class="main">
 
+<div class="title">
+📅 इस्लामिक कैलेंडर
+</div>
 
-    <!-- تاریخ -->
 
-    <div class="date-box">
+<div class="monthBox">
 
-        <h2 id="gregorianDate">
-            تاریخ حاصل کی جا رہی ہے...
-        </h2>
+<div id="monthTitle" class="monthTitle">
+Loading...
+</div>
 
-        <p id="hijriDate">
-            ہجری تاریخ حاصل کی جا رہی ہے...
-        </p>
 
-        <p id="dayName"></p>
+<div class="buttons">
 
-    </div>
+<button onclick="previousMonth()">
+⬅ पिछला
+</button>
 
+<button class="todayBtn" onclick="goToday()">
+आज
+</button>
 
-    <!-- پچھلا / اگلا دن -->
-
-    <div class="navigation">
-
-        <button onclick="changeDay(-1)">
-            → پچھلا دن
-        </button>
-
-        <button onclick="changeDay(1)">
-            اگلا دن ←
-        </button>
-
-    </div>
-
-
-    <button class="today-btn" onclick="goToday()">
-        📅 آج پر واپس جائیں
-    </button>
-
-
-    <!-- اگلی نماز -->
-
-    <div class="next-prayer">
-
-        <h2>
-            ⏰ اگلی نماز
-        </h2>
-
-        <div id="nextPrayerName">
-            معلوم کیا جا رہا ہے...
-        </div>
-
-        <div id="countdown">
-            --:--:--
-        </div>
-
-    </div>
-
-
-    <!-- نماز کے اوقات -->
-
-    <div class="prayer-list">
-
-        <div class="prayer-card">
-
-            <div>
-                <div class="prayer-name">🌙 فجر</div>
-                <span class="azan">اذان / نماز کا وقت</span>
-            </div>
-
-            <div class="prayer-time" id="Fajr">
-                --:--
-            </div>
-
-        </div>
-
-
-        <div class="prayer-card special">
-
-            <div>
-                <div class="prayer-name">🌅 طلوعِ آفتاب</div>
-                <span class="azan">سورج نکلنے کا وقت</span>
-            </div>
-
-            <div class="prayer-time" id="Sunrise">
-                --:--
-            </div>
-
-        </div>
-
-
-        <div class="prayer-card special">
-
-            <div>
-                <div class="prayer-name">☀️ زوال</div>
-                <span class="azan">تقریباً نصف النہار</span>
-            </div>
-
-            <div class="prayer-time" id="Zawal">
-                --:--
-            </div>
-
-        </div>
-
-
-        <div class="prayer-card">
-
-            <div>
-                <div class="prayer-name">☀️ ظہر</div>
-                <span class="azan">اذان / نماز کا وقت</span>
-            </div>
-
-            <div class="prayer-time" id="Dhuhr">
-                --:--
-            </div>
-
-        </div>
-
-
-        <div class="prayer-card">
-
-            <div>
-                <div class="prayer-name">🌤️ عصر</div>
-                <span class="azan">اذان / نماز کا وقت</span>
-            </div>
-
-            <div class="prayer-time" id="Asr">
-                --:--
-            </div>
-
-        </div>
-
-
-        <div class="prayer-card">
-
-            <div>
-                <div class="prayer-name">🌇 مغرب</div>
-                <span class="azan">اذان / نماز کا وقت</span>
-            </div>
-
-            <div class="prayer-time" id="Maghrib">
-                --:--
-            </div>
-
-        </div>
-
-
-        <div class="prayer-card">
-
-            <div>
-                <div class="prayer-name">🌙 عشاء</div>
-                <span class="azan">اذان / نماز کا وقت</span>
-            </div>
-
-            <div class="prayer-time" id="Isha">
-                --:--
-            </div>
-
-        </div>
-
-
-        <div class="prayer-card special">
-
-            <div>
-                <div class="prayer-name">🌌 نصف شب</div>
-                <span class="azan">شرعی حساب کے مطابق</span>
-            </div>
-
-            <div class="prayer-time" id="Midnight">
-                --:--
-            </div>
-
-        </div>
-
-
-        <div class="prayer-card special">
-
-            <div>
-                <div class="prayer-name">🌙 تہجد کا آخری تہائی</div>
-                <span class="azan">رات کا آخری حصہ</span>
-            </div>
-
-            <div class="prayer-time" id="LastThird">
-                --:--
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- Calculation Settings -->
-
-    <div class="settings">
-
-        <h3>
-            ⚙️ نماز کے حساب کی ترتیب
-        </h3>
-
-        <label>
-            عصر کا طریقہ:
-        </label>
-
-        <select id="school" onchange="loadPrayerTimes()">
-
-            <option value="1">
-                حنفی
-            </option>
-
-            <option value="0">
-                شافعی / مالکی / حنبلی
-            </option>
-
-        </select>
-
-        <p>
-            حنفی اختیار کرنے سے عصر کا وقت حنفی طریقے کے مطابق حساب کیا جائے گا۔
-        </p>
-
-    </div>
-
-
-    <!-- Monthly Calendar -->
-
-    <div class="month-section">
-
-        <h2>
-            📅 ماہانہ نماز کیلنڈر
-        </h2>
-
-        <div id="monthlyCalendar" class="loading">
-            ماہانہ کیلنڈر حاصل کیا جا رہا ہے...
-        </div>
-
-    </div>
-
-
-    <div class="footer">
-
-        مدھوبنی، بہار — PIN 847229<br>
-
-        نماز کے اوقات آن لائن calculation service سے حاصل کیے جاتے ہیں۔<br>
-
-        اپنے مقامی مسجد کے اوقات سے بھی ضرور موازنہ کریں۔
-
-    </div>
+<button onclick="nextMonth()">
+अगला ➡
+</button>
 
 </div>
 
+
+<table class="calendar">
+
+<thead>
+
+<tr>
+
+<th>
+रवि<br>
+اتوار
+</th>
+
+<th>
+सोम<br>
+پیر
+</th>
+
+<th>
+मंगल<br>
+منگل
+</th>
+
+<th>
+बुध<br>
+بدھ
+</th>
+
+<th>
+गुरु<br>
+جمعرات
+</th>
+
+<th>
+शुक्र<br>
+جمعہ
+</th>
+
+<th>
+शनि<br>
+ہفتہ
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="calendarBody">
+</tbody>
+
+</table>
+
+</div>
+
+
+<div id="info" class="info">
+आज की तारीख लोड हो रही है...
+</div>
+
+
+<div class="footerNote">
+
+🌙 हिजरी तारीख चाँद देखने के अनुसार
+स्थानीय रूप से 1 दिन आगे या पीछे हो सकती है।
+
+</div>
+
+</div>
 
 
 <script>
 
 
-/* ==========================================
-   بنیادی سیٹنگ
-   ========================================== */
+/* =========================
+   MONTH NAMES
+========================= */
 
-const CITY = "Madhubani";
+const monthNamesHindi = [
 
-const COUNTRY = "India";
+"जनवरी",
+"फ़रवरी",
+"मार्च",
+"अप्रैल",
+"मई",
+"जून",
+"जुलाई",
+"अगस्त",
+"सितंबर",
+"अक्टूबर",
+"नवंबर",
+"दिसंबर"
 
-const METHOD = 1;
-
-let selectedDate = new Date();
-
-let currentTimes = null;
+];
 
 
-/* ==========================================
-   تاریخ کو DD-MM-YYYY میں تبدیل کرنا
-   ========================================== */
+const monthNamesEnglish = [
 
-function formatDate(date){
+"January",
+"February",
+"March",
+"April",
+"May",
+"June",
+"July",
+"August",
+"September",
+"October",
+"November",
+"December"
 
-    let day =
-        String(date.getDate()).padStart(2,"0");
+];
 
-    let month =
-        String(date.getMonth()+1).padStart(2,"0");
 
-    let year =
-        date.getFullYear();
+const monthNamesUrdu = [
 
-    return `${day}-${month}-${year}`;
+"جنوری",
+"فروری",
+"مارچ",
+"اپریل",
+"مئی",
+"جون",
+"جولائی",
+"اگست",
+"ستمبر",
+"اکتوبر",
+"نومبر",
+"دسمبر"
+
+];
+
+
+const hindiDays = [
+
+"रवि",
+"सोम",
+"मंगल",
+"बुध",
+"गुरु",
+"शुक्र",
+"शनि"
+
+];
+
+
+const urduDays = [
+
+"اتوار",
+"پیر",
+"منگل",
+"بدھ",
+"جمعرات",
+"جمعہ",
+"ہفتہ"
+
+];
+
+
+/* =========================
+   HIJRI MONTH NAMES
+========================= */
+
+const hijriMonthsHindi = [
+
+"मुहर्रम",
+"सफ़र",
+"रबीउल अव्वल",
+"रबीउल आखिर",
+"जुमादाल ऊला",
+"जुमादाल आखिरा",
+"रजब",
+"शाबान",
+"रमज़ान",
+"शव्वाल",
+"ज़िलक़ादा",
+"ज़िलहिज्जा"
+
+];
+
+
+const hijriMonthsUrdu = [
+
+"مُحَرَّم",
+"صَفَر",
+"رَبِيعُ الْأَوَّل",
+"رَبِيعُ الآخِر",
+"جُمَادَى الْأُولَى",
+"جُمَادَى الْآخِرَة",
+"رَجَب",
+"شَعْبَان",
+"رَمَضَان",
+"شَوَّال",
+"ذُو الْقَعْدَة",
+"ذُو الْحِجَّة"
+
+];
+
+
+/* =========================
+   ISLAMIC EVENTS
+========================= */
+
+const islamicEvents = {
+
+"1-1":
+"इस्लामी नया साल",
+
+"10-1":
+"आशूरा",
+
+"12-3":
+"ईद-ए-मिलादुन्नबी ﷺ",
+
+"27-7":
+"शब-ए-मेराज",
+
+"15-8":
+"शब-ए-बरात",
+
+"1-9":
+"रमज़ान",
+
+"27-9":
+"शब-ए-क़द्र",
+
+"1-10":
+"ईद-उल-फ़ित्र",
+
+"9-12":
+"अरफ़ा",
+
+"10-12":
+"ईद-उल-अज़हा"
+
+};
+
+
+/* =========================
+   CURRENT VIEW
+========================= */
+
+let viewDate = new Date();
+
+
+/* =========================
+   LIVE CLOCK
+========================= */
+
+function updateClock(){
+
+const now = new Date();
+
+const time =
+now.toLocaleTimeString(
+"en-IN",
+{
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit",
+hour12:true
+}
+);
+
+document.getElementById("clock").innerHTML =
+"🕒 " + time;
+
+}
+
+updateClock();
+
+setInterval(updateClock,1000);
+
+
+/* =========================
+   HIJRI DATE
+   FIXED INDIA BASE DATE
+
+   29 September 2026
+   =
+   16 Rabi-ul-Aakhir 1448
+========================= */
+
+function getHijri(date){
+
+/*
+   तारीख का केवल दिन निकाल रहे हैं।
+   समय की वजह से तारीख नहीं बदलेगी।
+*/
+
+const currentDate = new Date(
+date.getFullYear(),
+date.getMonth(),
+date.getDate()
+);
+
+
+/*
+   BASE DATE
+*/
+
+const baseDate = new Date(
+2026,
+8,
+29
+);
+
+
+/*
+   BASE HIJRI DATE
+
+   29-09-2026
+   = 16-04-1448
+*/
+
+const baseHijriDay = 16;
+const baseHijriMonth = 4;
+const baseHijriYear = 1448;
+
+
+/*
+   दोनों Gregorian तारीखों के
+   बीच दिनों का अंतर
+*/
+
+let difference = Math.round(
+(currentDate - baseDate) /
+(1000 * 60 * 60 * 24)
+);
+
+
+let day =
+baseHijriDay + difference;
+
+let month =
+baseHijriMonth;
+
+let year =
+baseHijriYear;
+
+
+/*
+   हर हिजरी महीने के दिन
+   29/30 रखे गए हैं।
+
+   इस हिस्से को बदलकर
+   आपकी स्थानीय चाँद तारीख
+   के अनुसार आगे संशोधित किया
+   जा सकता है।
+*/
+
+const monthDays = [
+
+30, // 1 Muharram
+29, // 2 Safar
+30, // 3 Rabi-ul-Awwal
+29, // 4 Rabi-ul-Aakhir
+30, // 5 Jumadal Ula
+29, // 6 Jumadal Aakhirah
+30, // 7 Rajab
+29, // 8 Shaban
+30, // 9 Ramadan
+29, // 10 Shawwal
+30, // 11 Zilqadah
+29  // 12 Zilhijjah
+
+];
+
+
+/*
+   आगे की तारीखें
+*/
+
+while(
+day > monthDays[month - 1]
+){
+
+day =
+day -
+monthDays[month - 1];
+
+month++;
+
+if(month > 12){
+
+month = 1;
+year++;
+
+}
 
 }
 
 
-/* ==========================================
-   API URL
-   ========================================== */
+/*
+   पिछली तारीखें
+*/
 
-function getAPIUrl(date){
+while(day <= 0){
 
-    const dateString = formatDate(date);
+month--;
 
-    const school =
-        document.getElementById("school").value;
+if(month < 1){
 
-    return `
-    https://api.aladhan.com/v1/timingsByCity/
-    ${dateString}
-    ?city=${encodeURIComponent(CITY)}
-    &country=${encodeURIComponent(COUNTRY)}
-    &method=${METHOD}
-    &school=${school}
-    `.replace(/\s+/g,"");
+month = 12;
+year--;
+
+}
+
+day =
+day +
+monthDays[month - 1];
 
 }
 
 
-/* ==========================================
-   وقت کو صاف کرنا
-   ========================================== */
+return {
 
-function cleanTime(time){
+day:day,
+month:month,
+year:year
 
-    if(!time) return "--:--";
-
-    return time.split(" ")[0];
+};
 
 }
 
 
-/* ==========================================
-   تاریخ دکھانا
-   ========================================== */
+/* =========================
+   CREATE CALENDAR
+========================= */
 
-function showDateInfo(data){
+function createCalendar(){
 
-    const gregorian =
-        data.date.gregorian;
+const year =
+viewDate.getFullYear();
 
-    const hijri =
-        data.date.hijri;
-
-    document.getElementById("gregorianDate").innerText =
-        gregorian.day +
-        " " +
-        gregorian.month.en +
-        " " +
-        gregorian.year;
-
-    document.getElementById("hijriDate").innerText =
-        hijri.day +
-        " " +
-        hijri.month.en +
-        " " +
-        hijri.year +
-        " ہجری";
-
-    document.getElementById("dayName").innerText =
-        gregorian.weekday.en;
-
-}
+const month =
+viewDate.getMonth();
 
 
-/* ==========================================
-   زوال کا اندازاً وقت
-   ========================================== */
+/* MONTH TITLE */
 
-function calculateZawal(times){
+document.getElementById(
+"monthTitle"
+).innerHTML =
 
-    const sunrise =
-        times.Sunrise;
-
-    const sunset =
-        times.Sunset;
-
-    if(!sunrise || !sunset){
-
-        return "--:--";
-
-    }
-
-    const sunriseMinutes =
-        toMinutes(sunrise);
-
-    const sunsetMinutes =
-        toMinutes(sunset);
-
-    const middle =
-        Math.round(
-            (sunriseMinutes + sunsetMinutes) / 2
-        );
-
-    return minutesToTime(middle);
-
-}
+"📅 "
++
+monthNamesHindi[month]
++
+" "
++
+year
++
+"<br>"
++
+monthNamesEnglish[month]
++
+" | "
++
+monthNamesUrdu[month];
 
 
-/* ==========================================
-   منٹ میں تبدیل کرنا
-   ========================================== */
+/* FIRST DAY */
 
-function toMinutes(time){
-
-    const parts =
-        time.split(":");
-
-    return (
-        parseInt(parts[0]) * 60 +
-        parseInt(parts[1])
-    );
-
-}
+const firstDay =
+new Date(
+year,
+month,
+1
+).getDay();
 
 
-/* ==========================================
-   منٹ کو وقت میں تبدیل کرنا
-   ========================================== */
+/* TOTAL DAYS */
 
-function minutesToTime(minutes){
+const totalDays =
+new Date(
+year,
+month + 1,
+0
+).getDate();
 
-    minutes =
-        (minutes + 1440) % 1440;
 
-    let h =
-        Math.floor(minutes / 60);
+const tbody =
+document.getElementById(
+"calendarBody"
+);
 
-    let m =
-        minutes % 60;
 
-    return (
-        String(h).padStart(2,"0")
-        +
-        ":"
-        +
-        String(m).padStart(2,"0")
-    );
+tbody.innerHTML = "";
+
+
+let row =
+document.createElement("tr");
+
+
+/* EMPTY CELLS */
+
+for(
+let i = 0;
+i < firstDay;
+i++
+){
+
+const cell =
+document.createElement("td");
+
+row.appendChild(cell);
 
 }
 
 
-/* ==========================================
-   نماز کے اوقات دکھانا
-   ========================================== */
+/* ALL DATES */
 
-function showPrayerTimes(times){
+for(
+let day = 1;
+day <= totalDays;
+day++
+){
 
-    currentTimes = times;
-
-    document.getElementById("Fajr").innerText =
-        cleanTime(times.Fajr);
-
-    document.getElementById("Sunrise").innerText =
-        cleanTime(times.Sunrise);
-
-    document.getElementById("Dhuhr").innerText =
-        cleanTime(times.Dhuhr);
-
-    document.getElementById("Asr").innerText =
-        cleanTime(times.Asr);
-
-    document.getElementById("Maghrib").innerText =
-        cleanTime(times.Maghrib);
-
-    document.getElementById("Isha").innerText =
-        cleanTime(times.Isha);
-
-    document.getElementById("Midnight").innerText =
-        cleanTime(times.Midnight);
-
-    document.getElementById("LastThird").innerText =
-        cleanTime(times.Lastthird);
-
-    document.getElementById("Zawal").innerText =
-        calculateZawal(times);
-
-}
+const date =
+new Date(
+year,
+month,
+day
+);
 
 
-/* ==========================================
-   نماز کا وقت API سے حاصل کرنا
-   ========================================== */
+const cell =
+document.createElement("td");
 
-async function loadPrayerTimes(){
 
-    document.getElementById("nextPrayerName").innerText =
-        "وقت حاصل کیا جا رہا ہے...";
+/* TODAY */
 
-    try{
+const today =
+new Date();
 
-        const url =
-            getAPIUrl(selectedDate);
 
-        const response =
-            await fetch(url);
+if(
 
-        if(!response.ok){
+date.getFullYear() ===
+today.getFullYear()
 
-            throw new Error("Network Error");
+&&
 
-        }
+date.getMonth() ===
+today.getMonth()
 
-        const result =
-            await response.json();
+&&
 
-        if(
-            !result.data ||
-            !result.data.timings
-        ){
+date.getDate() ===
+today.getDate()
 
-            throw new Error("No Data");
+){
 
-        }
-
-        showDateInfo(result.data);
-
-        showPrayerTimes(result.data.timings);
-
-        updateNextPrayer();
-
-        loadMonthlyCalendar();
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        document.getElementById("nextPrayerName").innerText =
-            "انٹرنیٹ سے وقت حاصل نہیں ہو سکا";
-
-        document.getElementById("monthlyCalendar").innerHTML =
-            `
-            <div class="error">
-            نماز کے اوقات حاصل نہیں ہو سکے۔
-            براہ کرم انٹرنیٹ چیک کریں اور دوبارہ کوشش کریں۔
-            </div>
-            `;
-
-    }
+cell.classList.add("today");
 
 }
 
 
-/* ==========================================
-   اگلی نماز معلوم کرنا
-   ========================================== */
+/* HIJRI */
 
-function updateNextPrayer(){
-
-    if(!currentTimes) return;
-
-    const now =
-        new Date();
-
-    const prayers = [
-
-        {
-            name:"فجر",
-            time:currentTimes.Fajr
-        },
-
-        {
-            name:"ظہر",
-            time:currentTimes.Dhuhr
-        },
-
-        {
-            name:"عصر",
-            time:currentTimes.Asr
-        },
-
-        {
-            name:"مغرب",
-            time:currentTimes.Maghrib
-        },
-
-        {
-            name:"عشاء",
-            time:currentTimes.Isha
-        }
-
-    ];
-
-    let next = null;
-
-    for(const prayer of prayers){
-
-        const parts =
-            prayer.time.split(":");
-
-        const prayerDate =
-            new Date();
-
-        prayerDate.setHours(
-            parseInt(parts[0]),
-            parseInt(parts[1]),
-            0,
-            0
-        );
-
-        if(prayerDate > now){
-
-            next = {
-                name:prayer.name,
-                date:prayerDate
-            };
-
-            break;
-
-        }
-
-    }
+const hijri =
+getHijri(date);
 
 
-    if(!next){
-
-        const parts =
-            currentTimes.Fajr.split(":");
-
-        const tomorrow =
-            new Date();
-
-        tomorrow.setDate(
-            tomorrow.getDate()+1
-        );
-
-        tomorrow.setHours(
-            parseInt(parts[0]),
-            parseInt(parts[1]),
-            0,
-            0
-        );
-
-        next = {
-            name:"فجر",
-            date:tomorrow
-        };
-
-    }
+const key =
+hijri.month
++
+"-"
++
+hijri.day;
 
 
-    document.getElementById("nextPrayerName").innerText =
-        next.name;
+const eventName =
+islamicEvents[key];
 
 
-    const difference =
-        next.date.getTime() -
-        now.getTime();
+if(eventName){
 
-
-    if(difference <= 0){
-
-        document.getElementById("countdown").innerText =
-            "اب نماز کا وقت ہے";
-
-        return;
-
-    }
-
-
-    const totalSeconds =
-        Math.floor(difference / 1000);
-
-    const hours =
-        Math.floor(totalSeconds / 3600);
-
-    const minutes =
-        Math.floor(
-            (totalSeconds % 3600) / 60
-        );
-
-    const seconds =
-        totalSeconds % 60;
-
-
-    document.getElementById("countdown").innerText =
-
-        String(hours).padStart(2,"0")
-        +
-        ":"
-        +
-        String(minutes).padStart(2,"0")
-        +
-        ":"
-        +
-        String(seconds).padStart(2,"0");
+cell.classList.add(
+"holiday"
+);
 
 }
 
 
-/* ==========================================
-   دن تبدیل کرنا
-   ========================================== */
+/* HTML */
 
-function changeDay(amount){
+let html = "";
 
-    selectedDate.setDate(
-        selectedDate.getDate() + amount
-    );
 
-    loadPrayerTimes();
+/* ENGLISH DATE */
+
+html +=
+'<div class="dateEnglish">'
++
+day
++
+"</div>";
+
+
+/* HINDI DAY */
+
+html +=
+'<div class="dateHindi">'
++
+hindiDays[
+date.getDay()
+]
++
+"</div>";
+
+
+/* URDU DAY */
+
+html +=
+'<div class="dateUrdu">'
++
+urduDays[
+date.getDay()
+]
++
+"</div>";
+
+
+/* HIJRI DATE */
+
+if(
+
+hijri.day > 0
+
+&&
+
+hijri.month > 0
+
+){
+
+html +=
+'<div class="hijri">'
++
+hijri.day
++
+" "
++
+hijriMonthsHindi[
+hijri.month - 1
+]
++
+"<br>"
++
+hijriMonthsUrdu[
+hijri.month - 1
+]
++
+"</div>";
 
 }
 
 
-/* ==========================================
-   آج پر واپس
-   ========================================== */
+/* EVENT */
+
+if(eventName){
+
+html +=
+'<div class="tick">✓</div>';
+
+html +=
+'<div class="holidayName">'
++
+eventName
++
+"</div>";
+
+}
+
+
+cell.innerHTML =
+html;
+
+
+row.appendChild(cell);
+
+
+/* NEW ROW */
+
+if(
+date.getDay() === 6
+){
+
+tbody.appendChild(row);
+
+row =
+document.createElement("tr");
+
+}
+
+}
+
+
+/* LAST ROW */
+
+if(
+row.children.length > 0
+){
+
+while(
+row.children.length < 7
+){
+
+const empty =
+document.createElement("td");
+
+row.appendChild(empty);
+
+}
+
+tbody.appendChild(row);
+
+}
+
+
+/* =========================
+   TODAY INFORMATION
+========================= */
+
+const now =
+new Date();
+
+
+const todayHijri =
+getHijri(now);
+
+
+document.getElementById(
+"info"
+).innerHTML =
+
+"📅 आज: "
++
+now.getDate()
++
+" "
++
+monthNamesHindi[
+now.getMonth()
+]
++
+" "
++
+now.getFullYear()
+
++
+
+" | 🌙 Hijri: "
+
++
+todayHijri.day
++
+" "
++
+hijriMonthsHindi[
+todayHijri.month - 1
+]
+
++
+" "
++
+todayHijri.year
++
+" हिजरी"
+
++
+
+"<br>"
+
++
+
+"اردو: "
++
+hijriMonthsUrdu[
+todayHijri.month - 1
+];
+
+}
+
+
+/* =========================
+   PREVIOUS MONTH
+========================= */
+
+function previousMonth(){
+
+viewDate.setMonth(
+viewDate.getMonth() - 1
+);
+
+createCalendar();
+
+}
+
+
+/* =========================
+   NEXT MONTH
+========================= */
+
+function nextMonth(){
+
+viewDate.setMonth(
+viewDate.getMonth() + 1
+);
+
+createCalendar();
+
+}
+
+
+/* =========================
+   TODAY
+========================= */
 
 function goToday(){
 
-    selectedDate =
-        new Date();
+viewDate =
+new Date();
 
-    loadPrayerTimes();
-
-}
-
-
-/* ==========================================
-   ماہانہ کیلنڈر
-   ========================================== */
-
-async function loadMonthlyCalendar(){
-
-    const year =
-        selectedDate.getFullYear();
-
-    const month =
-        selectedDate.getMonth()+1;
-
-    const school =
-        document.getElementById("school").value;
-
-    const url =
-        `
-        https://api.aladhan.com/v1/calendarByCity/
-        ${year}/
-        ${month}
-        ?city=${encodeURIComponent(CITY)}
-        &country=${encodeURIComponent(COUNTRY)}
-        &method=${METHOD}
-        &school=${school}
-        `.replace(/\s+/g,"");
-
-
-    try{
-
-        const response =
-            await fetch(url);
-
-        const result =
-            await response.json();
-
-        if(!result.data){
-
-            throw new Error("No monthly data");
-
-        }
-
-        let html = `
-
-        <div class="table-wrapper">
-
-        <table>
-
-        <tr>
-
-        <th>تاریخ</th>
-        <th>ہجری</th>
-        <th>فجر</th>
-        <th>طلوع</th>
-        <th>ظہر</th>
-        <th>عصر</th>
-        <th>مغرب</th>
-        <th>عشاء</th>
-
-        </tr>
-
-        `;
-
-
-        result.data.forEach(day => {
-
-            const date =
-                day.date.gregorian.date;
-
-            const hijri =
-                day.date.hijri.date;
-
-            const times =
-                day.timings;
-
-
-            const selected =
-                date ===
-                formatDate(selectedDate);
-
-
-            html += `
-
-            <tr class="${selected ? "today-row" : ""}">
-
-                <td>${date}</td>
-
-                <td>${hijri}</td>
-
-                <td>${cleanTime(times.Fajr)}</td>
-
-                <td>${cleanTime(times.Sunrise)}</td>
-
-                <td>${cleanTime(times.Dhuhr)}</td>
-
-                <td>${cleanTime(times.Asr)}</td>
-
-                <td>${cleanTime(times.Maghrib)}</td>
-
-                <td>${cleanTime(times.Isha)}</td>
-
-            </tr>
-
-            `;
-
-        });
-
-
-        html += `
-
-        </table>
-
-        </div>
-
-        `;
-
-
-        document.getElementById("monthlyCalendar").innerHTML =
-            html;
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        document.getElementById("monthlyCalendar").innerHTML =
-            `
-            <div class="error">
-            ماہانہ کیلنڈر لوڈ نہیں ہو سکا۔
-            </div>
-            `;
-
-    }
+createCalendar();
 
 }
 
 
-/* ==========================================
-   ہر سیکنڈ Countdown update
-   ========================================== */
+/* =========================
+   START
+========================= */
+
+createCalendar();
+
+
+/* =========================
+   AUTO UPDATE
+========================= */
 
 setInterval(
+function(){
 
-    updateNextPrayer,
+const now =
+new Date();
 
-    1000
 
+if(
+
+viewDate.getFullYear() ===
+now.getFullYear()
+
+&&
+
+viewDate.getMonth() ===
+now.getMonth()
+
+){
+
+createCalendar();
+
+}
+
+},
+60000
 );
-
-
-/* ==========================================
-   ہر دن خودکار طور پر نئی تاریخ لوڈ کرنا
-   ========================================== */
-
-setInterval(
-
-    function(){
-
-        const realToday =
-            new Date();
-
-        if(
-            selectedDate.toDateString()
-            ===
-            realToday.toDateString()
-        ){
-
-            loadPrayerTimes();
-
-        }
-
-    },
-
-    60000
-
-);
-
-
-/* ==========================================
-   شروع میں لوڈ
-   ========================================== */
-
-loadPrayerTimes();
 
 </script>
 
