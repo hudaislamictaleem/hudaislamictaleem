@@ -1,1 +1,715 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Qibla Finder - Huda Islamic Taleem</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Nastaliq Urdu", "Noto Naskh Arabic", Arial, sans-serif;
+  background: #f3f7f4;
+  color: #173b2c;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 18px;
+}
+
+.header {
+  background: #075e54;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 0 0 25px 25px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.header p {
+  margin: 5px 0 0;
+  font-size: 16px;
+}
+
+.card {
+  background: white;
+  margin-top: 18px;
+  padding: 20px;
+  border-radius: 22px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.10);
+  text-align: center;
+}
+
+button {
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+  padding: 15px;
+  margin-top: 10px;
+  background: #075e54;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+#status {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 12px;
+  background: #eef7f1;
+  font-size: 15px;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.info-box {
+  background: #f4f8f5;
+  padding: 12px;
+  border-radius: 15px;
+}
+
+.info-box strong {
+  display: block;
+  color: #075e54;
+  font-size: 20px;
+}
+
+.compass {
+  width: 290px;
+  height: 290px;
+  max-width: 85vw;
+  max-height: 85vw;
+  margin: 25px auto;
+  border-radius: 50%;
+  border: 8px solid #075e54;
+  position: relative;
+  background:
+    radial-gradient(circle, white 0 55%, #eaf3ed 56% 100%);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+  transition: transform 0.15s linear;
+}
+
+.compass::before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: rgba(7,94,84,0.15);
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.compass::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: rgba(7,94,84,0.15);
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.direction {
+  position: absolute;
+  font-weight: bold;
+  font-size: 22px;
+  z-index: 2;
+}
+
+.north {
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #c62828;
+}
+
+.south {
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.east {
+  right: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.west {
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.kaaba {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  background: #111;
+  color: #fff;
+  border-radius: 8px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 27px;
+  z-index: 5;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+}
+
+.qibla-arrow {
+  position: absolute;
+  width: 8px;
+  height: 105px;
+  background: #d32f2f;
+  left: 50%;
+  top: 50%;
+  transform-origin: 50% 100%;
+  transform: translate(-50%, -100%) rotate(0deg);
+  border-radius: 10px;
+  z-index: 4;
+}
+
+.qibla-arrow::before {
+  content: "";
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 17px solid transparent;
+  border-right: 17px solid transparent;
+  border-bottom: 25px solid #d32f2f;
+}
+
+.angle {
+  font-size: 35px;
+  font-weight: bold;
+  color: #075e54;
+  margin: 5px 0;
+}
+
+.distance {
+  font-size: 20px;
+  color: #444;
+}
+
+.note {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #555;
+  margin-top: 15px;
+}
+
+.error {
+  color: #b71c1c;
+  background: #ffebee;
+}
+
+.success {
+  color: #075e54;
+  background: #e8f5e9;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>🕋 قبلہ فائنڈر</h1>
+  <p>Huda Islamic Taleem</p>
+</div>
+
+<div class="container">
+
+  <div class="card">
+
+    <h2>قبلہ کی سمت معلوم کریں</h2>
+
+    <p>
+      نیچے بٹن دبائیں اور اپنے فون کی Location اور Compass کی اجازت دیں۔
+    </p>
+
+    <button onclick="startQibla()">
+      📍 قبلہ کی سمت معلوم کریں
+    </button>
+
+    <div id="status">
+      ابھی Location حاصل نہیں کی گئی۔
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <h3>🧭 قبلہ کمپاس</h3>
+
+    <div class="compass" id="compass">
+
+      <div class="direction north">N</div>
+      <div class="direction east">E</div>
+      <div class="direction south">S</div>
+      <div class="direction west">W</div>
+
+      <div class="qibla-arrow" id="qiblaArrow"></div>
+
+      <div class="kaaba">🕋</div>
+
+    </div>
+
+    <div class="angle" id="qiblaAngle">
+      --°
+    </div>
+
+    <div>
+      قبلہ کا زاویہ
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <h3>📍 آپ کا مقام</h3>
+
+    <div class="info">
+
+      <div class="info-box">
+        <span>عرض البلد</span>
+        <strong id="latitude">--</strong>
+      </div>
+
+      <div class="info-box">
+        <span>طول البلد</span>
+        <strong id="longitude">--</strong>
+      </div>
+
+    </div>
+
+    <div class="distance" id="distance">
+      کعبہ سے فاصلہ: --
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <h3>ℹ️ ضروری ہدایت</h3>
+
+    <div class="note">
+      فون کو سیدھا رکھیں اور کمپاس کے لیے فون کو 8 کی شکل میں
+      چند مرتبہ حرکت دیں۔ اگر کمپاس صحیح کام نہ کرے تو فون کی
+      Compass/Motion اجازت چیک کریں۔
+      <br><br>
+      بہتر درستگی کے لیے فون کا Location اور Compass آن ہونا ضروری ہے۔
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+// ===============================
+// Kaaba Location
+// ===============================
+
+const KAABA_LAT = 21.422487;
+const KAABA_LON = 39.826206;
+
+
+// ===============================
+// Variables
+// ===============================
+
+let userLat = null;
+let userLon = null;
+let qiblaBearing = null;
+let deviceHeading = 0;
+
+
+// ===============================
+// Start Qibla Finder
+// ===============================
+
+async function startQibla() {
+
+  const status = document.getElementById("status");
+
+  status.className = "";
+  status.innerHTML = "📍 آپ کا مقام معلوم کیا جا رہا ہے...";
+
+  if (!navigator.geolocation) {
+
+    status.className = "error";
+    status.innerHTML =
+      "❌ آپ کے فون کا Location سسٹم دستیاب نہیں ہے۔";
+
+    return;
+  }
+
+  // iPhone/iPad permission
+  if (
+    typeof DeviceOrientationEvent !== "undefined" &&
+    typeof DeviceOrientationEvent.requestPermission === "function"
+  ) {
+
+    try {
+
+      const permission =
+        await DeviceOrientationEvent.requestPermission();
+
+      if (permission !== "granted") {
+
+        status.className = "error";
+
+        status.innerHTML =
+          "❌ Compass کی اجازت نہیں ملی۔";
+
+        return;
+      }
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+
+  }
+
+  getLocation();
+
+  startCompass();
+
+}
+
+
+// ===============================
+// Get GPS Location
+// ===============================
+
+function getLocation() {
+
+  navigator.geolocation.getCurrentPosition(
+
+    function(position) {
+
+      userLat = position.coords.latitude;
+      userLon = position.coords.longitude;
+
+      document.getElementById("latitude").innerText =
+        userLat.toFixed(6);
+
+      document.getElementById("longitude").innerText =
+        userLon.toFixed(6);
+
+      qiblaBearing =
+        calculateQibla(userLat, userLon);
+
+      const distance =
+        calculateDistance(
+          userLat,
+          userLon,
+          KAABA_LAT,
+          KAABA_LON
+        );
+
+      document.getElementById("qiblaAngle").innerText =
+        Math.round(qiblaBearing) + "°";
+
+      document.getElementById("distance").innerText =
+        "کعبہ سے فاصلہ: " +
+        formatDistance(distance);
+
+      document.getElementById("status").className =
+        "success";
+
+      document.getElementById("status").innerHTML =
+        "✅ مقام حاصل ہو گیا۔ فون کو سیدھا رکھیں۔";
+
+      updateArrow();
+
+    },
+
+    function(error) {
+
+      let message =
+        "❌ Location حاصل نہیں ہو سکی۔";
+
+      if (error.code === 1) {
+        message =
+          "❌ Location کی اجازت نہیں دی گئی۔";
+      }
+
+      if (error.code === 2) {
+        message =
+          "❌ Location دستیاب نہیں ہے۔";
+      }
+
+      if (error.code === 3) {
+        message =
+          "❌ Location حاصل کرنے میں وقت ختم ہوگیا۔";
+      }
+
+      const status =
+        document.getElementById("status");
+
+      status.className = "error";
+      status.innerHTML = message;
+
+    },
+
+    {
+      enableHighAccuracy: true,
+      timeout: 15000,
+      maximumAge: 0
+    }
+
+  );
+
+}
+
+
+// ===============================
+// Calculate Qibla Bearing
+// ===============================
+
+function calculateQibla(lat, lon) {
+
+  const φ1 = toRadians(lat);
+  const φ2 = toRadians(KAABA_LAT);
+
+  const Δλ =
+    toRadians(KAABA_LON - lon);
+
+  const y =
+    Math.sin(Δλ);
+
+  const x =
+    Math.cos(φ1) * Math.tan(φ2) -
+    Math.sin(φ1) * Math.cos(Δλ);
+
+  let bearing =
+    toDegrees(Math.atan2(y, x));
+
+  bearing =
+    (bearing + 360) % 360;
+
+  return bearing;
+
+}
+
+
+// ===============================
+// Compass
+// ===============================
+
+function startCompass() {
+
+  if (window.DeviceOrientationEvent) {
+
+    window.addEventListener(
+      "deviceorientation",
+      handleOrientation,
+      true
+    );
+
+    window.addEventListener(
+      "deviceorientationabsolute",
+      handleOrientation,
+      true
+    );
+
+  } else {
+
+    document.getElementById("status").innerHTML =
+      "⚠️ اس فون میں Compass دستیاب نہیں ہے۔";
+
+  }
+
+}
+
+
+// ===============================
+// Device Orientation
+// ===============================
+
+function handleOrientation(event) {
+
+  let heading = null;
+
+  // iPhone / iPad
+  if (typeof event.webkitCompassHeading === "number") {
+
+    heading = event.webkitCompassHeading;
+
+  }
+
+  // Android
+  else if (typeof event.alpha === "number") {
+
+    heading = 360 - event.alpha;
+
+  }
+
+  if (heading === null) {
+    return;
+  }
+
+  deviceHeading =
+    normalizeAngle(heading);
+
+  rotateCompass();
+
+  updateArrow();
+
+}
+
+
+// ===============================
+// Rotate Compass
+// ===============================
+
+function rotateCompass() {
+
+  const compass =
+    document.getElementById("compass");
+
+  compass.style.transform =
+    "rotate(" + (-deviceHeading) + "deg)";
+
+}
+
+
+// ===============================
+// Qibla Arrow
+// ===============================
+
+function updateArrow() {
+
+  if (qiblaBearing === null) {
+    return;
+  }
+
+  let relativeAngle =
+    qiblaBearing - deviceHeading;
+
+  relativeAngle =
+    normalizeAngle(relativeAngle);
+
+  const arrow =
+    document.getElementById("qiblaArrow");
+
+  arrow.style.transform =
+    "translate(-50%, -100%) rotate(" +
+    relativeAngle +
+    "deg)";
+
+}
+
+
+// ===============================
+// Distance Calculation
+// ===============================
+
+function calculateDistance(
+  lat1,
+  lon1,
+  lat2,
+  lon2
+) {
+
+  const R = 6371;
+
+  const φ1 = toRadians(lat1);
+  const φ2 = toRadians(lat2);
+
+  const Δφ =
+    toRadians(lat2 - lat1);
+
+  const Δλ =
+    toRadians(lon2 - lon1);
+
+  const a =
+    Math.sin(Δφ / 2) *
+    Math.sin(Δφ / 2) +
+
+    Math.cos(φ1) *
+    Math.cos(φ2) *
+    Math.sin(Δλ / 2) *
+    Math.sin(Δλ / 2);
+
+  const c =
+    2 * Math.atan2(
+      Math.sqrt(a),
+      Math.sqrt(1 - a)
+    );
+
+  return R * c;
+
+}
+
+
+// ===============================
+// Format Distance
+// ===============================
+
+function formatDistance(km) {
+
+  if (km < 1) {
+
+    return Math.round(km * 1000) + " میٹر";
+
+  }
+
+  return km.toFixed(1) + " کلومیٹر";
+
+}
+
+
+// ===============================
+// Math Helpers
+// ===============================
+
+function toRadians(degrees) {
+  return degrees * Math.PI / 180;
+}
+
+function toDegrees(radians) {
+  return radians * 180 / Math.PI;
+}
+
+function normalizeAngle(angle) {
+
+  return (angle + 360) % 360;
+
+}
+
+</script>
+
+</body>
+</html>
